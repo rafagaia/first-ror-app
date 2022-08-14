@@ -1,0 +1,31 @@
+<h2><%= @post.title %></h2>
+<p><%= @post.body %></p>
+<hr>
+<div class="well">
+    <%= link_to "Edit", edit_post_path(@post), :class => 'btn btn-default' %>
+
+<%
+=begin%>
+@TODO: Confirmation dialog "are you sure" not working
+Another way?:
+<%= link_to "Delete", post_path(@post)
+                method: :delete,
+                data: {confirm: 'Are you sure?'},
+                :class => 'btn btn-danger' %>
+<%
+=end%>
+    <%= button_to "Delete", post_path(@post),
+                    data: { turbo_confirm: "Are you sure?" },
+                    method: :delete,
+                    class: 'btn btn-danger' %>
+</div>
+<hr>
+
+<%
+=begin%>
+    comments and form HTML's are partial, and have underscore prefix,
+    but don't need to add with underscore here:
+<%
+=end%>
+<%= render 'comments/comments' %>
+<%= render 'comments/form' %>
